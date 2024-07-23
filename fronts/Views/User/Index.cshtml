@@ -1,0 +1,54 @@
+﻿@model fronts.Models.UserViewModel
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de Sesión</title>
+    <link rel="stylesheet" href="~/css/site.css"> <!-- Añade tu archivo CSS si es necesario -->
+</head>
+<body>
+    <div class="card text-primary">
+        <!-- Encabezado de la tarjeta centrado -->
+        <div class="card-header text-center">
+            <h5>Inicio de Sesión</h5>
+        </div>
+        <!-- Cuerpo de la tarjeta centrado -->
+        <div class="card-body text-center">
+            <div class="col-md-12">
+                <!-- Formulario con acción hacia el método "Index" -->
+                <form asp-action="Index" method="post">
+                    <!-- Mostrar resumen de validación solo para el modelo -->
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <!-- Campo de entrada para el nombre de usuario -->
+                    <div class="form-group">
+                        <label asp-for="Username"></label>
+                        <input asp-for="Username" class="form-control" placeholder="Nombre de Usuario" required>
+                        <!-- Mostrar mensajes de validación para el campo Username -->
+                        <span asp-validation-for="Username" class="text-danger"></span>
+                    </div>
+                    <!-- Campo de entrada para la contraseña -->
+                    <div class="form-group">
+                        <label asp-for="Password"></label>
+                        <input asp-for="Password" type="password" class="form-control" placeholder="Contraseña" required>
+                        <!-- Mostrar mensajes de validación para el campo Password -->
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <!-- Pie de la tarjeta con contenido centrado -->
+                    <div class="card-footer text-center">
+                        <div class="form-group">
+                            <!-- Botón de tipo submit para iniciar sesión -->
+                            <input type="submit" value="Iniciar Sesión" class="btn btn-outline-primary btn-sm" />
+                            <!-- Enlace para volver a la lista de índice o cualquier otra página -->
+                            <a asp-action="Index" class="btn btn-outline-success btn-sm">Volver</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/js/site.js"></script> <!-- Añade tu archivo JavaScript si es necesario -->
+</body>
+</html>

@@ -1,0 +1,95 @@
+﻿@model List<fronts.Models.ProductoViewModel>
+
+@* @{
+    Layout = null;
+} *@
+<!-- Define la tarjeta con texto en color primario -->
+<div class="card text-primary">
+    <!-- Define el encabezado de la tarjeta con texto centrado -->
+    <div class="card-header text-center">
+        <!-- Título del encabezado -->
+        <h5>Lista de Productos</h5>
+    </div>
+    <!-- Define el cuerpo de la tarjeta -->
+    <div class="card-body">
+        <!-- Define una fila -->
+        <div class="row">
+            <!-- Define una columna que ocupa todo el ancho en dispositivos medianos y más grandes -->
+            <div class="col-md-12">
+                <!-- Define un panel -->
+                <div class="panel panel-default">
+                    <!-- Encabezado del panel -->
+                    <div class="panel-heading">
+                        <!-- Enlace para crear un nuevo registro -->
+                        <!-- Línea horizontal -->
+                        <hr />
+                        <!-- Título del panel -->
+                        <h5 class="panel-title">Productos</h5>
+                    </div>
+                    <!-- Cuerpo del panel -->
+                    <div class="panel-body">
+                        <!-- Tabla para mostrar los productos -->
+                        <table class="table table-hover table-responsive table-striped" id="MyTable">
+                            <!-- Encabezado de la tabla -->
+                            <thead>
+                                <tr>
+                                    <!-- Encabezado de la columna para el ID del producto -->
+                                    <th>ProductoId</th>
+                                    <!-- Encabezado de la columna para el nombre -->
+                                    <th>Nombre</th>
+                                    <!-- Encabezado de la columna para la descripción -->
+                                    <th>Descripcion</th>
+                                    <!-- Encabezado de la columna para el precio -->
+                                    <th>Precio</th>
+                                    <!-- Encabezado de la columna para el estado activo -->
+                                    <th>Activo</th>
+                                    <!-- Encabezado de la columna para las acciones -->
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <!-- Cuerpo de la tabla -->
+                            <tbody>
+                                @for (int i = 0; i < Model.Count; i++)
+                                {
+                                    <tr>
+                                        <!-- Celda que muestra el ID del producto -->
+                                        <td>@Model[i].ProductoId</td>
+                                        <!-- Celda que muestra el nombre del producto -->
+                                        <td>@Model[i].Nombre</td>
+                                        <!-- Celda que muestra la descripción del producto -->
+                                        <td>@Model[i].Descripcion</td>
+                                        <!-- Celda que muestra el precio del producto -->
+                                        <td>@Model[i].Precio</td>
+                                        <!-- Celda que muestra el estado activo del producto -->
+                                        <td>@Model[i].Activo</td>
+                                        <td> <button id="@Model[i].ProductoId" onclick="Edit(this.id)" class="btn btn-primary  "> Editar </button>  </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Pie de la tarjeta con texto centrado -->
+    <div class="card-footer text-muted text-center">
+        <!-- Texto en el pie de la tarjeta -->
+        Crud Productos
+    </div>
+</div>
+<script>
+    function Edit(id) {
+        $.ajax({
+            url: "/User/Edit?ProductoId=" + id,
+            type: "GET",
+            success: function (e) {
+                console.log(e)
+
+            }, error: function (e) {
+                location.reload();
+            }
+
+        })
+    }
+</script>
